@@ -1,5 +1,5 @@
-Was ist Container-Technologie oder Container-Virtualisierung?
-# Container-Technologie ist ein Verfahren zur Virtualisierung auf Betriebssystemebene. Sie ermöglicht es, Anwendungen inklusive aller Abhängigkeiten (Bibliotheken, Konfigurationen etc.) isoliert und portabel in sogenannten Containern auszuführen.
+# Was ist Container-Technologie oder Container-Virtualisierung?
+Container-Technologie ist ein Verfahren zur Virtualisierung auf Betriebssystemebene. Sie ermöglicht es, Anwendungen inklusive aller Abhängigkeiten (Bibliotheken, Konfigurationen etc.) isoliert und portabel in sogenannten Containern auszuführen.
 Was sind die Vor- und Nachteile der Container-Technologie zu virtuellen Servern (VM)
 # + Container sind ressourceneffizienter und mehr lightweight, da sie kein gebrauch für ein GUI und anderes haben. Sie haben mehr Portabilität und sind allgemein viel schneller. (Je nach Funktion)
 # - Container verwenden den gleichen Kernel, was geringere Sicherheit mit sich bringt. (Weniger Isolation im Verglecich zu VMs)
