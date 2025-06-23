@@ -1,0 +1,37 @@
+kind: BuildConfig
+apiVersion: build.openshift.io/v1
+metadata:
+  name: html-openshift-app
+  labels:
+    app: html-openshift-app
+    app.kubernetes.io/part-of: html-openshift-app
+spec:
+  output:
+    to:
+      kind: ImageStreamTag
+      name: 'html-openshift-app:latest'
+  resources: {}
+  successfulBuildsHistoryLimit: 5
+  failedBuildsHistoryLimit: 5
+  strategy:
+    type: Source
+    sourceStrategy:
+      from:
+        kind: ImageStreamTag
+        namespace: openshift
+        name: 'nodejs:latest'
+  source:
+    type: Git
+    git:
+      uri: 'https://github.com/lucaom448/uk109'
+    contextDir: /Projects/Auftrag-6.2
+    SourceSecret:
+      name: webhook-secret
+  triggers:
+    - type: Generic
+      generic:
+          secretReference:
+            name: webhook-secret
+    - type: ImageChange
+    - type: ConfigChange
+  runPolicy: Serial
