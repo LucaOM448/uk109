@@ -24,7 +24,7 @@ spec:
     type: Git
     git:
       uri: 'https://github.com/lucaom448/uk109'
-    contextDir: /Projects/Auftrag-6.2
+    contextDir: /Projects/Block-6/Auftrag-6.2
     SourceSecret:
       name: webhook-secret
   triggers:
