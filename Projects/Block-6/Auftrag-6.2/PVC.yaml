@@ -1,4 +1,4 @@
-kind: PersistentVolume Claim
+kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
   name: html-openshift-app
