@@ -1,7 +1,7 @@
 kind: HorizontalPodAutoscaler
 apiVersion: autoscaling/v2
 metadata:
-  name: html-openshift-app
+  name: html-openshift-app-hpa
 spec:
   scaleTargetRef:
     kind: Deployment
