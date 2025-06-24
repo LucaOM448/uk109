@@ -15,9 +15,25 @@ spec:
       labels:
         app: html-openshift-app
     spec:
+      volumes:
+        - name: html-openshift-app-data
+          persistentVolumeClaim:
+            claimName: html-openshift-app
       containers:
       - name: html-openshift-app
-        resources: {}
+        resources:
+          limits:
+            cpu: 200m
+            memory: 200Mi
+          requests:
+            cpu: 100m
+            memory: 100Mi  resources:
+          limits:
+            cpu: 200m
+            memory: 200Mi
+          requests:
+            cpu: 100m
+            memory: 100Mi
         ports:
         - containerPort: 8080
           protocol: TCP
