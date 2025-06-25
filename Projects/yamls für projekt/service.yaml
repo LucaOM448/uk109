@@ -15,3 +15,17 @@ spec:
   sessionAffinity: None
   selector:
     app: counter-database
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: counter-backend
+spec:
+  selector:
+    app: counter-backend
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080

@@ -46,3 +46,52 @@ spec:
               mountPath: /var/lib/pgsql/data
           image: 'registry.redhat.io/rhel8/postgresql-15:latest'
           imagePullPolicy: Always
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: counter-backend
+  labels:
+    app: counter-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: counter-backend
+  template:
+    metadata:
+      labels:
+        app: counter-backend
+    spec:
+      containers:
+        - name: counter-backend
+          image: 'registry.gitlab.com/ahmadshoaib.muhebali/uek109-ahmad/counter-backend:v1'
+          imagePullPolicy: IfNotPresent
+          resources: {}
+          env:
+            - name: npm_config_cache
+              value: ./.npm-cache
+            - name: DB_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: counter-database
+                  key: database-host
+            - name: DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: counter-database
+                  key: database-name
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: counter-database
+                  key: database-user
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: counter-database
+                  key: database-password
+          ports:
+            - containerPort: 8080
