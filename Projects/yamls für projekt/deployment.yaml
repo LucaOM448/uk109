@@ -66,7 +66,13 @@ spec:
         - name: counter-backend
           image: 'registry.gitlab.com/ahmadshoaib.muhebali/uek109-ahmad/counter-backend:v1'
           imagePullPolicy: IfNotPresent
-          resources: {}
+          resources: 
+            requests:
+              memory: 100Mi
+              cpu: 100m
+            limits:
+              memory: 200Mi
+              cpu: 200m
           env:
             - name: npm_config_cache
               value: ./.npm-cache
@@ -92,3 +98,44 @@ spec:
                   key: database-password
           ports:
             - containerPort: 8080
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: counter-frontend
+  labels:
+    app: counter-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: counter-frontend
+  template:
+    metadata:
+      labels:
+        app: counter-frontend
+    spec:
+      containers:
+        - name: counter-frontend
+          image: 'registry.gitlab.com/ahmadshoaib.muhebali/uek109-ahmad/counter-frontend:v1'
+          imagePullPolicy: IfNotPresent
+          resources:
+            requests:
+              memory: 100Mi
+              cpu: 100m
+            limits:
+              memory: 200Mi
+              cpu: 200m
+          env:
+            - name: npm_config_cache
+              value: ./.npm-cache
+            - name: NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: BACKEND_URL
+              value: https://counter-backend-254201-zlic-loconnor1.apps.exoscale-ch-gva-2-0.appuio.cloud
+          ports:
+            - containerPort: 3000
