@@ -1,0 +1,15 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: counter-database-data
+  labels:
+    app: counter-app
+    app.kubernetes.io/part-of: counter-app
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: rbd-storagepool-cluster
+  volumeMode: Filesystem

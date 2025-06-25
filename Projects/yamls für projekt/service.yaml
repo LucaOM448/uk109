@@ -1,0 +1,17 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: counter-database
+  labels:
+    app: counter-app
+    app.kubernetes.io/part-of: counter-app
+spec:
+  ports:
+    - name: counter-database
+      protocol: TCP
+      port: 5432
+      targetPort: 5432
+  type: ClusterIP
+  sessionAffinity: None
+  selector:
+    app: counter-database

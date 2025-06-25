@@ -1,0 +1,14 @@
+kind: Secret
+apiVersion: v1
+metadata:
+  name: counter-database
+  labels:
+    app: counter-app
+    app.kubernetes.io/part-of: counter-app
+data:
+  database-host: 'ZGItaG9zdA=='
+  database-name: 'ZGItbmFtZQ=='
+  database-password: 'ZGItcHdk'
+  database-user: 'ZGItdXNy'
+type: Opaque
+
